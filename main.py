@@ -6,12 +6,10 @@ import easygui
 
 # ---------- Functions ----------
 def file_open_box():
-    path = easygui.fileopenbox()
-    return path
+    return easygui.fileopenbox()
 
 def directory_open_box():
-    path = filedialog.askdirectory()
-    return path
+    return filedialog.askdirectory()
 
 def open_file():
     path = file_open_box()
@@ -88,67 +86,53 @@ def list_files():
     file_list = sorted(os.listdir(path))
     list_window = tk.Toplevel(window)
     list_window.title("Files in Folder")
-    list_window.geometry("400x300")
+    list_window.geometry("300x200")
     list_window.config(bg="#f1f5f9")
-    tk.Label(list_window, text="Files:", font=("Arial", 12, "bold"), bg="#f1f5f9").pack(pady=10)
-    listbox = tk.Listbox(list_window, font=("Arial", 10), width=50)
+    tk.Label(list_window, text="Files:", font=("Arial", 11, "bold"), bg="#f1f5f9").pack(pady=8)
+    listbox = tk.Listbox(list_window, font=("Arial", 10), width=40, height=8)
     for i in file_list:
         listbox.insert(tk.END, i)
-    listbox.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+    listbox.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
 # ---------- GUI Setup ----------
 window = tk.Tk()
 window.title("📁 Simple File Manager")
-window.geometry("800x600")
-window.config(bg="#0f172a")  # dark blue background
+window.geometry("500x350")
+window.config(bg="#0f172a")
 
-# ---------- Style Config ----------
-btn_font = ("Segoe UI", 11, "bold")
+# ---------- Styles ----------
+btn_font = ("Segoe UI", 9, "bold")
 btn_bg = "#4f46e5"
 btn_fg = "#f8fafc"
 frame_bg = "#1e293b"
 
 # ---------- Title ----------
-tk.Label(window, text="Simple File Manager", font=("Segoe UI", 20, "bold"),
-         bg="#0f172a", fg="#facc15").pack(pady=20)
+tk.Label(window, text="Simple File Manager", font=("Segoe UI", 14, "bold"),
+         bg="#0f172a", fg="#facc15").pack(pady=10)
 
-# ---------- Frames ----------
-frame_top = tk.Frame(window, bg=frame_bg)
-frame_top.pack(pady=10)
+# ---------- Buttons Frame ----------
+buttons_frame = tk.Frame(window, bg=frame_bg)
+buttons_frame.pack(pady=5)
 
-frame_middle = tk.Frame(window, bg=frame_bg)
-frame_middle.pack(pady=10)
+# Button Layout (2 columns)
+buttons = [
+    ("📂 Open File", open_file),
+    ("📋 Copy File", copy_file),
+    ("📤 Move File", move_file),
+    ("✏️ Rename File", rename_file),
+    ("🗑️ Delete File", delete_file),
+    ("📄 List Files", list_files),
+    ("📁 Make Folder", make_directory),
+    ("🚫 Remove Folder", remove_directory),
+]
 
-frame_bottom = tk.Frame(window, bg=frame_bg)
-frame_bottom.pack(pady=10)
+for index, (text, cmd) in enumerate(buttons):
+    row = index // 2
+    col = index % 2
+    tk.Button(buttons_frame, text=text, command=cmd, font=btn_font,
+              bg=btn_bg, fg=btn_fg, width=24, height=2,
+              relief='flat', activebackground='#6366f1', activeforeground='white')\
+        .grid(row=row, column=col, padx=10, pady=7)
 
-# ---------- Buttons ----------
-# Top frame: File operations
-tk.Button(frame_top, text="Open File", command=open_file,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
-
-tk.Button(frame_top, text="Copy File", command=copy_file,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
-
-tk.Button(frame_top, text="Move File", command=move_file,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=2, padx=10, pady=10)
-
-# Middle frame: File editing
-tk.Button(frame_middle, text="Rename File", command=rename_file,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
-
-tk.Button(frame_middle, text="Delete File", command=delete_file,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
-
-tk.Button(frame_middle, text="List Files in Folder", command=list_files,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=2, padx=10, pady=10)
-
-# Bottom frame: Directory operations
-tk.Button(frame_bottom, text="Make Directory", command=make_directory,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
-
-tk.Button(frame_bottom, text="Remove Directory", command=remove_directory,
-          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
-
-# ---------- Main Loop ----------
+# ---------- Mainloop ----------
 window.mainloop()
