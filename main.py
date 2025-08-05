@@ -68,3 +68,14 @@ def move_file():
         except:
             tk.messagebox.showinfo('Error!', 'file move failed.')
         
+# create directory
+def make_directory():
+    path = directory_open_box()
+    name = input("name: ")
+    path = os.path.join(path, name)
+    try:
+        os.mkdir(path)
+        tk.messagebox.showinfo('seccess', 'directory successfully make.')
+    except:
+        tk.messagebox.showinfo('Error!', 'directory can\'t make')
+
