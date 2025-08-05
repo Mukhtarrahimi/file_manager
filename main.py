@@ -32,3 +32,13 @@ def copy_file():
         tk.messagebox.showinfo('Error!', 'file copied successfully.')
     except:
         tk.messagebox.showinfo('Error!', 'file not found.')
+        
+# function for delete
+
+def delete_file():
+    path = file_open_box()
+    try:
+        os.remove(path)
+        tk.messagebox.showinfo('success!', 'file deleted successfully.')
+    except:
+         tk.Messagebox.showinfo('Error!', 'file not delete')
