@@ -79,3 +79,10 @@ def make_directory():
     except:
         tk.messagebox.showinfo('Error!', 'directory can\'t make')
 
+#  remove directory
+def remove_directory():
+    path = directory_open_box()
+    try:
+        os.rmdir(path)
+    except:
+        tk.messagebox.showinfo('Error!', 'directory does\'t remove.')
