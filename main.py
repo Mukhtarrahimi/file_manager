@@ -112,4 +112,13 @@ frame_bg = "#1e293b"
 tk.Label(window, text="Simple File Manager", font=("Segoe UI", 20, "bold"),
          bg="#0f172a", fg="#facc15").pack(pady=20)
 
+# ---------- Frames ----------
+frame_top = tk.Frame(window, bg=frame_bg)
+frame_top.pack(pady=10)
+
+frame_middle = tk.Frame(window, bg=frame_bg)
+frame_middle.pack(pady=10)
+
+frame_bottom = tk.Frame(window, bg=frame_bg)
+frame_bottom.pack(pady=10)
 
