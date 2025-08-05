@@ -122,3 +122,33 @@ frame_middle.pack(pady=10)
 frame_bottom = tk.Frame(window, bg=frame_bg)
 frame_bottom.pack(pady=10)
 
+# ---------- Buttons ----------
+# Top frame: File operations
+tk.Button(frame_top, text="Open File", command=open_file,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
+
+tk.Button(frame_top, text="Copy File", command=copy_file,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
+
+tk.Button(frame_top, text="Move File", command=move_file,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=2, padx=10, pady=10)
+
+# Middle frame: File editing
+tk.Button(frame_middle, text="Rename File", command=rename_file,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
+
+tk.Button(frame_middle, text="Delete File", command=delete_file,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
+
+tk.Button(frame_middle, text="List Files in Folder", command=list_files,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=2, padx=10, pady=10)
+
+# Bottom frame: Directory operations
+tk.Button(frame_bottom, text="Make Directory", command=make_directory,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=0, padx=10, pady=10)
+
+tk.Button(frame_bottom, text="Remove Directory", command=remove_directory,
+          font=btn_font, bg=btn_bg, fg=btn_fg, width=20).grid(row=0, column=1, padx=10, pady=10)
+
+# ---------- Main Loop ----------
+window.mainloop()
