@@ -86,3 +86,10 @@ def remove_directory():
         os.rmdir(path)
     except:
         tk.messagebox.showinfo('Error!', 'directory does\'t remove.')
+        
+# lsit file
+def list_files():
+    path = directory_open_box()
+    file_list = sorted(os.listdir(path))
+    for i in file_list:
+        print(i)
