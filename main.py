@@ -54,3 +54,17 @@ def rename_file():
         os.rename(file,path2)
     except:
         tk.messagebox.showinfo('Error!', 'Rename failed.')
+        
+# move file function 
+def move_file():
+    source = file_open_box()
+    destination = directory_open_box()
+    if source == destination:
+        tk.messagebox.showinfo('Error!', 'source and destination are same')
+    else:
+        try:
+            shutil.move(source, destination)
+            
+        except:
+            tk.messagebox.showinfo('Error!', 'file move failed.')
+        
