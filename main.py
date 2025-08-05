@@ -22,4 +22,13 @@ def open_file():
     except:
         tk.messagebox.showinfo('Error!', 'file not found.')
         
-open_file()
+# copy_file function
+
+def copy_file():
+    srource = file_open_box()
+    destination = directory_open_box()
+    try:
+        shutil.copy(srource, destination)
+        tk.messagebox.showinfo('Error!', 'file copied successfully.')
+    except:
+        tk.messagebox.showinfo('Error!', 'file not found.')
