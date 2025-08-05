@@ -42,3 +42,15 @@ def delete_file():
         tk.messagebox.showinfo('success!', 'file deleted successfully.')
     except:
          tk.Messagebox.showinfo('Error!', 'file not delete')
+         
+# function for rename
+def rename_file():
+    try:
+        file = file_open_box()
+        path1 = os.path.dirname(file)
+        extension = os.path.splitext(file)[1]
+        new_name = input("new name: ")
+        path2 = os.path.join(path1, new_name + extension)
+        os.rename(file,path2)
+    except:
+        tk.messagebox.showinfo('Error!', 'Rename failed.')
